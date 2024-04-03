@@ -91,16 +91,36 @@ comment */
 
 // eg:   
 
-resource "aws_instance" "name" {
-  vpc_security_group_ids = aws_security_group.mysg.id
+# resource "aws_instance" "name" {
+#   vpc_security_group_ids = aws_security_group.mysg.id
   
-}
+# }
 
-resource "aws_security_group" "mysg" {
-   #inbound rules
-}
+# resource "aws_security_group" "mysg" {
+#    #inbound rules
+# }
 
 
 
 
 #================================================================================================#
+
+//TASK-1- CREATE EC2 INSTANCE USING TERRAFORM
+
+provider "aws" {
+  region =  "us-east-1"
+
+}
+
+resource "aws_instance" "name" {
+  ami = "ami-006ddd9080090" //you can copy from aws console for the particular os
+  instance_type = "t2.micro"
+  tags = {
+    "Name" : "Ec2Instance1"
+
+  }
+}
+
+//now type terraform init, terraform validate, terraform plan, terraform apply respectively
+// now the instance will be created
+//to delete this, #terraform destroy
