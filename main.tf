@@ -107,20 +107,56 @@ comment */
 
 //TASK-1- CREATE EC2 INSTANCE USING TERRAFORM
 
-provider "aws" {
-  region =  "us-east-1"
+# provider "aws" {
+#   region =  "us-east-1"
 
-}
+# }
 
-resource "aws_instance" "name" {
-  ami = "ami-006ddd9080090" //you can copy from aws console for the particular os
-  instance_type = "t2.micro"
-  tags = {
-    "Name" : "Ec2Instance1"
+# resource "aws_instance" "name" {
+#   ami = "ami-006ddd9080090" //you can copy from aws console for the particular os
+#   instance_type = "t2.micro"
+#   tags = {
+#     "Name" : "Ec2Instance1"
 
-  }
-}
+#   }
+# }
 
 //now type terraform init, terraform validate, terraform plan, terraform apply respectively
 // now the instance will be created
 //to delete this, #terraform destroy
+
+//TERRAFORM VARIABLES
+//1.Local variables
+//2.Input variables
+//3.output variables
+
+
+//1. INPUT VARIABLES SAMPLE CODE:
+
+provider "aws" {
+  region = "us-east-1"
+
+}
+
+resource "aws_instance" "web" {
+  ami= var.os
+  instance_type = var.size
+  tags= {
+    Name= var.name
+  }
+}
+
+variable "os"{
+  type = string
+  default = "ami-024xxxxxxx"
+  description = "This is my ami-id"
+}
+
+variable "size" {
+  default = "t2.micro"
+}
+
+variable "name" {
+  default = "TerraformEc2"
+}
+
