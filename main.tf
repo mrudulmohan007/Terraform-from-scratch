@@ -133,30 +133,48 @@ comment */
 
 //1. INPUT VARIABLES SAMPLE CODE:
 
-provider "aws" {
-  region = "us-east-1"
+# provider "aws" {
+#   region = "us-east-1"
 
-}
+# }
 
-resource "aws_instance" "web" {
-  ami= var.os
-  instance_type = var.size
-  tags= {
-    Name= var.name
-  }
-}
+# resource "aws_instance" "web" {
+#   ami= var.os
+#   instance_type = var.size
+#   tags= {
+#     Name= var.name
+#   }
+# }
 
-variable "os"{
-  type = string
-  default = "ami-024xxxxxxx"
-  description = "This is my ami-id"
-}
+# variable "os"{
+#   type = string
+#   default = "ami-024xxxxxxx"
+#   description = "This is my ami-id"
+# }
 
-variable "size" {
-  default = "t2.micro"
-}
+# variable "size" {
+#   default = "t2.micro"
+# }
 
-variable "name" {
-  default = "TerraformEc2"
-}
+# variable "name" {
+#   default = "TerraformEc2"
+# }
 
+//2 Local variables
+
+//eg:
+
+# locals {
+#     ami= "ami-xxxxxxxxx"
+#     type= "t2.micro"
+#     tags= {
+#     Name= "myvm"
+#     }
+# }
+
+# resource "aws_instanes" "name" {
+#     ami= local.ami
+#     instance_type= local.type
+#     tags = tags.Name
+  
+# }
